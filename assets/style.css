@@ -311,6 +311,7 @@ footer .ai-note{margin-top:6px;font-size:.78rem;opacity:.8}
   [data-speed]{transform:none!important}
 }
 /* 外八倾斜双卡片 */
+.resume-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
 .splay-pair{display:flex;gap:clamp(18px,4vw,46px);align-items:center;margin:26px 0 30px;perspective:1200px}
 .splay-card{flex:1;min-width:0;margin:0;background:#fff;border:3px solid var(--ink);border-radius:var(--r-md);padding:10px 10px 0;box-shadow:8px 8px 0 var(--ink);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
 .splay-card img{display:block;width:100%;border-radius:calc(var(--r-sm) - 2px);border:2px solid var(--line)}

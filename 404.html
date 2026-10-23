@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 · 这颗彗星走丢了 | 苏攀 Pan Su</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root{--ink:#1B2A5B;--orange:#FF5E14;--blue:#2D5DBA;--line:#0E1838;--paper:#FCF8F2}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--ink);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden}
+  .wrap{position:relative;text-align:center;max-width:620px;z-index:2}
+  .num{font-family:Impact,"Arial Black",sans-serif;font-size:clamp(120px,28vw,220px);line-height:.9;color:transparent;-webkit-text-stroke:3px var(--orange);letter-spacing:4px}
+  .num b{-webkit-text-stroke:0;color:var(--orange)}
+  h1{font-size:clamp(22px,5vw,34px);margin:14px 0 10px;font-weight:900}
+  p{color:#C8D2EB;font-size:16px;line-height:1.8;margin-bottom:30px}
+  .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  a.btn{display:inline-block;padding:14px 26px;border-radius:14px;font-weight:800;text-decoration:none;border:3px solid var(--line);transition:transform .18s,box-shadow .18s}
+  a.btn:hover{transform:translateY(-3px)}
+  a.p{background:var(--orange);color:#fff;box-shadow:5px 5px 0 #000}
+  a.g{background:#fff;color:var(--ink);box-shadow:5px 5px 0 #000}
+  .star{position:absolute;color:#FFC21F;font-size:60px;animation:spin 14s linear infinite;z-index:1}
+  .s1{top:12%;left:14%}.s2{bottom:14%;right:12%;font-size:44px;animation-duration:20s}
+  .ring{position:absolute;border:2px dashed rgba(255,255,255,.25);border-radius:50%;width:220px;height:220px;top:8%;right:8%;animation:spin 30s linear infinite reverse;z-index:1}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.star,.ring{animation:none}}
+</style>
+</head>
+<body>
+  <div class="ring"></div>
+  <div class="star s1">✦</div>
+  <div class="star s2">✦</div>
+  <main class="wrap">
+    <div class="num"><b>4</b>0<b>4</b></div>
+    <h1>这颗彗星走丢了 🪐</h1>
+    <p>你访问的页面不存在，可能链接已经更新。<br>不如回到首页，重新进入我的宇宙。</p>
+    <div class="btns">
+      <a class="btn p" href="index.html">← 回到首页</a>
+      <a class="btn g" href="index.html#works">直接看作品</a>
+    </div>
+  </main>
+</body>
+</html>
