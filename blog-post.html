@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>盘一盘 · 文章 | 苏攀 Pan Su</title>
+<meta name="description" content="苏攀（江馀生）的游戏 / 二次元内容营销观察与复盘专栏文章。">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="canonical" href="https://supan.work/blog-post.html">
+<meta name="og:type" content="article">
+<meta property="og:site_name" content="苏攀 Pan Su · 游戏内容营销作品集">
+<meta property="og:title" content="盘一盘 · 游戏 / 二游内容观察 | 苏攀 Pan Su">
+<meta property="og:description" content="二游社区洞察、策划方法论、入行思考。">
+<meta property="og:image" content="https://supan.work/assets/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="主导航">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html"><b>攀</b><span>PAN&nbsp;SU</span></a>
+    <ul class="nav-links">
+      <li class="hide-m"><a href="index.html#works">作品</a></li>
+      <li class="hide-m"><a href="index.html#about">关于我</a></li>
+      <li class="hide-m"><a href="blog.html">盘一盘</a></li>
+      <li><a href="index.html#contact" class="nav-cta">联系我</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero compact" id="top">
+  <div class="p-layer" data-speed="0.10" aria-hidden="true"><div class="grid-dots" style="position:absolute;inset:0"></div></div>
+  <div class="p-layer" data-speed="0.22" aria-hidden="true"><div class="mega-word" style="left:auto;right:-4vw">NOTES</div></div>
+  <div class="hero-inner" data-speed="0.06">
+    <div class="wrap">
+      <div class="case-top">
+        <a class="back-link" href="blog.html">← 返回「盘一盘」</a>
+        <div class="case-badges" id="postBadges"><span>加载中…</span></div>
+      </div>
+      <h1 class="case-title" id="postTitle">加载中…</h1>
+      <div class="case-meta" id="postMeta"></div>
+    </div>
+  </div>
+</header>
+
+<section class="section blog-post-section">
+  <div class="wrap">
+    <div class="case-body">
+      <aside class="case-toc" id="postToc" aria-label="目录"></aside>
+      <article class="case-section" id="postContent">
+        <p style="color:var(--muted)">文章加载中…</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-logo">苏攀 Pan Su · 游戏内容营销作品集</div>
+    <div class="ai-note">本网站由本人借助 AI 协作开发 · 2026</div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/posts.js"></script>
+<script>
+(function(){
+  var DATA = window.PORTFOLIO_POSTS && window.PORTFOLIO_POSTS.posts || [];
+  var qs = new URLSearchParams(location.search);
+  var id = qs.get('id');
+  var post = null;
+  for(var i=0;i<DATA.length;i++){ if(DATA[i].id===id){ post=DATA[i]; break; } }
+
+  if(!post){
+    document.getElementById('postTitle').textContent='文章未找到';
+    document.getElementById('postContent').innerHTML='<p>没有找到这篇内容，可能已被删除或链接有误。<a href="blog.html" class="work-more">← 返回列表</a></p>';
+    return;
+  }
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function fmtDate(s){if(!s)return'';var p=s.split('-');return p[0]+'.'+p[1]+'.'+p[2];}
+
+  document.title = post.title + ' | 盘一盘 · 苏攀 Pan Su';
+  document.getElementById('postTitle').textContent = post.title;
+  var badges = document.getElementById('postBadges');
+  badges.innerHTML = '<span>'+esc(post.category||'博客')+'</span>' + (post.tags||[]).slice(0,3).map(function(t){return '<span>'+esc(t)+'</span>';}).join('');
+  document.getElementById('postMeta').innerHTML =
+    '<span><b>日期</b> '+fmtDate(post.date)+'</span>' +
+    '<span><b>类别</b> '+esc(post.category||'博客')+'</span>';
+
+  // 简单 Markdown 渲染
+  function mdToHtml(md){
+    var lines = (md||'').split('\n');
+    var html = '', inList = false, toc = [];
+    function closeList(){ if(inList){ html+='</ul>'; inList=false; } }
+    lines.forEach(function(line){
+      var t = line.trim();
+      if(!t){ closeList(); return; }
+      var h = t.match(/^(#{2,3})\s+(.*)$/);
+      if(h){
+        closeList();
+        var lv = h[1].length;
+        var text = h[2].replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+        var slug = text.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]+/g,'-');
+        toc.push({lv:lv, text:h[2], slug:slug});
+        html += '<h'+(lv+1)+' id="'+slug+'">'+text+'</h'+(lv+1)+'>';
+        return;
+      }
+      var li = t.match(/^[-*]\s+(.*)$/);
+      if(li){
+        if(!inList){ html+='<ul>'; inList=true; }
+        html += '<li>'+li[1].replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')+'</li>';
+        return;
+      }
+      closeList();
+      html += '<p>'+t.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')+'</p>';
+    });
+    closeList();
+    // 生成目录
+    var tocHtml = '';
+    toc.forEach(function(h){
+      tocHtml += '<a href="#'+h.slug+'" style="'+(h.lv===2?'padding-left:10px;':'')+'">'+esc(h.text)+'</a>';
+    });
+    document.getElementById('postToc').innerHTML = toc.length? tocHtml : '<a href="#top">返回顶部 ↑</a>';
+    return html;
+  }
+  document.getElementById('postContent').innerHTML = '<div class="post-article">' + mdToHtml(post.content) + '</div>';
+  window.scrollTo({top:0});
+})();
+</script>
+</body>
+</html>

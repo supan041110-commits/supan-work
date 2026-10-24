@@ -56,6 +56,7 @@
       <li class="hide-m"><a href="#works">作品</a></li>
       <li class="hide-m"><a href="#about">关于我</a></li>
       <li class="hide-m"><a href="#awards">荣誉</a></li>
+      <li class="hide-m"><a href="blog.html">盘一盘</a></li>
       <li><a href="#contact" class="nav-cta">联系我</a></li>
     </ul>
   </div>
@@ -191,6 +192,23 @@
   </div>
 </section>
 
+<!-- 盘一盘 · 洞察 -->
+<section class="section insights" id="insights">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num" style="color:var(--blue)">02</div>
+      <div class="sec-titles">
+        <div class="sec-kicker" style="color:var(--orange-deep)">INSIGHTS · 盘一盘</div>
+        <h2 class="sec-title">我的观察</h2>
+      </div>
+      <p class="sec-note">二游社区洞察 · 策划方法论 · 入行思考——持续更新的内容阵地，<a href="blog.html" style="color:var(--orange-deep);font-weight:900">查看全部 →</a></p>
+    </div>
+    <div class="insight-grid" id="insightGrid">
+      <div style="color:var(--muted);grid-column:1/-1">加载中…</div>
+    </div>
+  </div>
+</section>
+
 <!-- 关于我 -->
 <section class="section" id="about">
   <div class="wrap">
@@ -244,7 +262,7 @@
 <section class="section awards" id="awards">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-num" style="color:#FFB26B">03</div>
+      <div class="sec-num" style="color:#FFB26B">04</div>
       <div class="sec-titles">
         <div class="sec-kicker" style="color:#FFB26B">HONORS</div>
         <h2 class="sec-title">荣誉与奖项</h2>
@@ -328,5 +346,26 @@
 </footer>
 
 <script src="assets/main.js"></script>
+<script src="assets/posts.js"></script>
+<script>
+(function(){
+  var DATA = window.PORTFOLIO_POSTS && window.PORTFOLIO_POSTS.posts || [];
+  var grid = document.getElementById('insightGrid');
+  if(!grid) return;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function fmtDate(s){if(!s)return'';var p=s.split('-');return p[0]+'.'+p[1]+'.'+p[2];}
+  if(!DATA.length){ grid.innerHTML='<div style="grid-column:1/-1;color:var(--muted);text-align:center;padding:30px 0">洞察更新中，敬请期待。</div>'; return; }
+  var latest = DATA.slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');}).slice(0,3);
+  grid.innerHTML = latest.map(function(p){
+    return '<a class="insight reveal" href="blog-post.html?id='+esc(p.id)+'">'+
+      '<div class="insight-top"><span class="insight-cat">'+esc(p.category||'博客')+'</span><span class="insight-date">'+fmtDate(p.date)+'</span></div>'+
+      '<h3>'+esc(p.title)+'</h3>'+
+      '<p>'+esc(p.excerpt||'')+'</p>'+
+      '<span class="insight-more">阅读 →</span>'+
+    '</a>';
+  }).join('');
+  grid.querySelectorAll('.reveal').forEach(function(el,i){ setTimeout(function(){el.classList.add('in');},60*i); });
+})();
+</script>
 </body>
 </html>

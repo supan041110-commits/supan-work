@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>盘一盘 · 游戏 / 二游内容观察 | 苏攀 Pan Su</title>
+<meta name="description" content="苏攀（江馀生）的游戏 / 二次元内容营销观察与复盘专栏：二游社区洞察、策划方法论、入行思考。持续更新。">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="canonical" href="https://supan.work/blog.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="苏攀 Pan Su · 游戏内容营销作品集">
+<meta property="og:title" content="盘一盘 · 游戏 / 二游内容观察 | 苏攀 Pan Su">
+<meta property="og:description" content="二游社区洞察、策划方法论、入行思考——把对玩家的理解，复盘成能落地的方法论。">
+<meta property="og:image" content="https://supan.work/assets/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="主导航">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html"><b>攀</b><span>PAN&nbsp;SU</span></a>
+    <ul class="nav-links">
+      <li class="hide-m"><a href="index.html#works">作品</a></li>
+      <li class="hide-m"><a href="index.html#about">关于我</a></li>
+      <li class="hide-m"><a href="blog.html" class="active">盘一盘</a></li>
+      <li><a href="index.html#contact" class="nav-cta">联系我</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero compact" id="top">
+  <div class="p-layer" data-speed="0.10" aria-hidden="true"><div class="grid-dots" style="position:absolute;inset:0"></div></div>
+  <div class="p-layer" data-speed="0.16" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <div class="p-layer" data-speed="0.30" aria-hidden="true">
+    <span class="sticker stick-tag">持续更新 · DAILY</span>
+    <svg class="sticker stick-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0l2.6 8.6L24 9.4l-7 5.8 2.4 8.8L12 19l-7.4 5L7 15.2 0 9.4l9.4-.8z"/></svg>
+  </div>
+  <div class="p-layer" data-speed="0.22" aria-hidden="true"><div class="mega-word" style="left:auto;right:-4vw">INSIGHT</div></div>
+
+  <div class="hero-inner" data-speed="0.06">
+    <div class="wrap">
+      <span class="kicker"><i></i>INSIGHTS · 游戏 / 二游内容观察</span>
+      <h1 class="mega-title">
+        <span class="l"><span>盘一盘</span></span>
+        <span class="l"><span class="stroke">× 我的观察</span></span>
+      </h1>
+      <p class="hero-sub">把玩的、读的、做的，<br>复盘成能落地的方法论。</p>
+      <p class="hero-desc">二游社区洞察、策划复盘、入行思考——这是我在作品集之外持续输出的内容阵地。</p>
+      <div class="hero-tags" id="heroTags"><span>加载中…</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section blog" id="blog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">01</div>
+      <div class="sec-titles">
+        <div class="sec-kicker">ALL POSTS</div>
+        <h2 class="sec-title">全部文章</h2>
+      </div>
+      <div class="sec-note">内容来自「内容日记」，我会持续更新对游戏社区与内容营销的观察。</div>
+    </div>
+
+    <div class="blog-cats reveal" id="blogCats"><button class="bc bc-on" data-cat="全部">全部</button></div>
+    <div class="blog-grid" id="blogGrid">
+      <div class="blog-loading">文章加载中…</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-logo">苏攀 Pan Su · 游戏内容营销作品集</div>
+    <div class="ai-note">本网站由本人借助 AI 协作开发 · 2026</div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/posts.js"></script>
+<script>
+(function(){
+  var DATA = window.PORTFOLIO_POSTS && window.PORTFOLIO_POSTS.posts || [];
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function fmtDate(s){if(!s)return'';var p=s.split('-');return p[0]+'.'+p[1]+'.'+p[2];}
+
+  // 类别标签
+  var cats = ['全部'];
+  DATA.forEach(function(p){ if(p.category && cats.indexOf(p.category)<0) cats.push(p.category); });
+  var heroTags = document.getElementById('heroTags');
+  var tags = {};
+  DATA.forEach(function(p){ (p.tags||[]).forEach(function(t){ tags[t]=1; }); });
+  var tagsArr = Object.keys(tags);
+  if(heroTags){ heroTags.innerHTML = tagsArr.length? tagsArr.slice(0,6).map(function(t){return '<span>'+esc(t)+'</span>';}).join('') : '<span>持续观察中</span>'; }
+
+  // 分类按钮
+  var catsEl = document.getElementById('blogCats');
+  catsEl.innerHTML = cats.map(function(c){return '<button class="bc'+(c==='全部'?' bc-on':'')+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>';}).join('');
+
+  var grid = document.getElementById('blogGrid');
+  function render(cat){
+    var list = DATA.filter(function(p){ return cat==='全部' || p.category===cat; });
+    if(!list.length){ grid.innerHTML='<div class="blog-empty">该分类还没有文章，敬请期待。</div>'; return; }
+    list.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+    grid.innerHTML = list.map(function(p,i){
+      var tagHtml = (p.tags||[]).slice(0,3).map(function(t){return '<span>'+esc(t)+'</span>';}).join('');
+      return '<a class="post reveal'+(i<4?' in':'')+'" href="blog-post.html?id='+esc(p.id)+'">'+
+        '<div class="post-top"><span class="post-cat">'+esc(p.category||'博客')+'</span>'+
+        '<span class="post-date">'+fmtDate(p.date)+'</span></div>'+
+        '<h3>'+esc(p.title)+'</h3>'+
+        '<p>'+esc(p.excerpt||'')+'</p>'+
+        '<div class="post-tags">'+tagHtml+'</div>'+
+        '<div class="post-more">阅读全文 →</div>'+
+      '</a>';
+    }).join('');
+    // 触发 reveal
+    document.querySelectorAll('#blogGrid .reveal').forEach(function(el,i){
+      setTimeout(function(){el.classList.add('in');}, 40*i);
+    });
+  }
+  render('全部');
+
+  // 分类切换
+  catsEl.addEventListener('click', function(e){
+    var btn = e.target.closest('.bc'); if(!btn) return;
+    catsEl.querySelectorAll('.bc').forEach(function(b){b.classList.remove('bc-on');});
+    btn.classList.add('bc-on');
+    render(btn.getAttribute('data-cat'));
+  });
+
+  // 年份/路径
+  var updated = window.PORTFOLIO_POSTS && window.PORTFOLIO_POSTS.updated;
+})();
+</script>
+</body>
+</html>
